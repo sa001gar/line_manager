@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - LineUp</title>
+    <script src="https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-secondary text-primary min-h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="bg-primary text-secondary py-4 shadow-md">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">LineUp</a>
+            <nav>
+                <a href="index.html" class="hover:underline">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center">
+        <div class="max-w-md w-full bg-white shadow-md rounded-lg p-8">
+            <h2 class="text-3xl font-bold text-center mb-6">Sign Up for LineUp</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="password" name="password" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="mb-6">
+                    <label for="confirm-password" class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <button type="submit" class="w-full bg-primary text-secondary py-2 rounded-md hover:bg-opacity-90 transition duration-300">Sign Up</button>
+            </form>
+            <p class="mt-4 text-center">
+                Already have an account? <a href="login.html" class="text-primary hover:underline">Login</a>
+            </p>
+            <p class="mt-2 text-center">
+                <a href="index.html" class="text-primary hover:underline">Back to Home</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-secondary py-4 shadow-md">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>© 2024 LineUp | <a href="sitemap.xml" class="hover:underline">Sitemap</a> | <a href="#" class="hover:underline">Terms & Conditions</a></p>
+        </div>
+    </footer>
+</body>
+</html>

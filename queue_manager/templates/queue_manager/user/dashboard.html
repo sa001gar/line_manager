@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LineUp</title>
+    <script src="https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#FFFFFF',
+                        highlight: '#2563EB',
+                        muted: '#E5E7EB'
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-secondary text-primary">
+    <nav class="bg-primary text-secondary shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold">LineUp</a>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="index.html" class="hover:text-highlight transition duration-300">Home</a>
+                <a href="#" class="hover:text-highlight transition duration-300">Dashboard</a>
+                <a href="#" class="hover:text-highlight transition duration-300">Profile</a>
+                <a href="#" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-opacity-90 transition duration-300">Logout</a>
+            </div>
+            <button class="md:hidden text-2xl" id="mobileMenuButton">☰</button>
+        </div>
+        <div class="md:hidden hidden" id="mobileMenu">
+            <a href="index.html" class="block py-2 px-4 hover:bg-blue-900">Home</a>
+            <a href="#" class="block py-2 px-4 hover:bg-blue-900">Dashboard</a>
+            <a href="#" class="block py-2 px-4 hover:bg-blue-900">Profile</a>
+            <a href="#" class="block py-2 px-4 bg-secondary text-primary hover:bg-opacity-90">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-extrabold mb-8">Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Queue Status Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6 border border-muted hover:shadow-xl transition duration-300">
+                <h2 class="text-2xl font-semibold mb-4">Current Queue Status</h2>
+                <div class="text-5xl font-extrabold text-highlight">
+                    Position: <span id="queuePosition">5</span>
+                </div>
+                <p class="mt-2 text-lg">Estimated wait time: <span id="estimatedWaitTime">15 minutes</span></p>
+            </div>
+
+            <!-- Queue History Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6 border border-muted hover:shadow-xl transition duration-300">
+                <h2 class="text-2xl font-semibold mb-4">Queue History</h2>
+                <canvas id="queueHistoryChart"></canvas>
+            </div>
+
+            <!-- Recent Activities Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6 border border-muted hover:shadow-xl transition duration-300">
+                <h2 class="text-2xl font-semibold mb-4">Recent Activities</h2>
+                <ul class="space-y-2 text-lg">
+                    <li class="border-b pb-2">Joined queue at City Hospital</li>
+                    <li class="border-b pb-2">Completed service at DMV</li>
+                    <li>Cancelled queue at Post Office</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h2 class="text-3xl font-semibold mb-4">Upcoming Appointments</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white shadow-lg rounded-lg">
+                    <thead class="bg-primary text-secondary">
+                        <tr>
+                            <th class="p-4 text-left">Organization</th>
+                            <th class="p-4 text-left">Service</th>
+                            <th class="p-4 text-left">Date</th>
+                            <th class="p-4 text-left">Time</th>
+                            <th class="p-4 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-4">City Hospital</td>
+                            <td class="p-4">General Checkup</td>
+                            <td class="p-4">2024-03-15</td>
+                            <td class="p-4">10:00 AM</td>
+                            <td class="p-4">
+                                <button class="bg-primary text-secondary px-4 py-2 rounded hover:bg-highlight transition duration-300">Reschedule</button>
+                            </td>
+                        </tr>
+                        <tr class="bg-muted">
+                            <td class="p-4">DMV</td>
+                            <td class="p-4">License Renewal</td>
+                            <td class="p-4">2024-03-20</td>
+                            <td class="p-4">2:00 PM</td>
+                            <td class="p-4">
+                                <button class="bg-primary text-secondary px-4 py-2 rounded hover:bg-highlight transition duration-300">Reschedule</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-primary text-secondary py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 LineUp | All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Queue History Chart
+        const ctx = document.getElementById('queueHistoryChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Average Wait Time (minutes)',
+                        data: [12, 19, 15, 8, 5, 10],
+                        backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                        borderColor: '#2563EB',
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#1E3A8A',
+                        },
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#1E3A8A',
+                        },
+                    },
+                    x: {
+                        ticks: {
+                            color: '#1E3A8A',
+                        },
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>

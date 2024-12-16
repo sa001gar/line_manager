@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FollowUp - Smart Queue Management</title>
+    <script src="https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+    <!-- Include Owl Carousel CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#FFFFFF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-secondary text-primary">
+    <nav class="bg-primary text-secondary">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold">FollowUp</a>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-4">
+            <a href="#" class="hover:text-gray-300 transition duration-300">Home</a>
+            <a href="#" class="hover:text-gray-300 transition duration-300">About</a>
+            <a href="#" class="hover:text-gray-300 transition duration-300">Services</a>
+            <a href="#" class="hover:text-gray-300 transition duration-300">Contact</a>
+          </div>
+          <div class="hidden md:flex space-x-4">
+            <a href="login.html" class="bg-secondary text-primary border-2 border-primary px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Login</a>
+            <a href="signup.html" class="bg-secondary text-primary border-2 border-primary px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Sign Up</a>
+          </div>
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden text-2xl" id="mobileMenuButton">☰</button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white text-primary border-t border-gray-200" id="mobileMenu">
+          <a href="#" class="block py-2 px-4 hover:bg-gray-100 transition duration-300">Home</a>
+          <a href="#" class="block py-2 px-4 hover:bg-gray-100 transition duration-300">About</a>
+          <a href="#" class="block py-2 px-4 hover:bg-gray-100 transition duration-300">Services</a>
+          <a href="#" class="block py-2 px-4 hover:bg-gray-100 transition duration-300">Contact</a>
+          <!-- Buttons in Two-Column Layout -->
+          <div class="grid grid-cols-2 gap-2 px-4 py-2">
+            <a href="login.html" class="block text-center border-2 border-primary text-primary py-2 rounded-lg hover:bg-primary hover:text-white transition duration-300">Login</a>
+            <a href="signup.html" class="block text-center border-2 border-primary text-primary py-2 rounded-lg hover:bg-primary hover:text-white transition duration-300">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    <header class="bg-primary text-secondary text-center py-16">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to FollowUp</h1>
+        <p class="text-xl md:text-2xl mb-8">Smart Queue Management for Modern India</p>
+        <a href="signup.html" class="bg-secondary text-primary px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition duration-300">Get Started</a>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-8">Search for Services</h2>
+        <div class="max-w-4xl mx-auto">
+          <!-- Search Inputs -->
+          <div class="flex flex-col md:flex-row gap-4 mb-8">
+            <!-- Organization Input -->
+            <select name="org_type" class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+              <option value="" disabled selected>Select Organization Type</option>
+              <option value="hospital">Hospital</option>
+              <option value="govt-office">Government Office</option>
+              <option value="school">Local School</option>
+            </select>
+            <!-- Line Dropdown -->
+            <select name="org_name" class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+              <option value="" disabled selected>Select Organization</option>
+              <option value="billing">Billing Counter</option>
+              <option value="enquiry">Enquiry Desk</option>
+              <option value="registration">Registration Counter</option>
+            </select>
+            <!-- Search Button -->
+            <button class="bg-primary text-secondary px-6 py-3 rounded-md hover:bg-opacity-90 transition duration-300">Search</button>
+          </div>
+      
+          <!-- Results Section -->
+          <div class="border-t border-gray-300 pt-6">
+            <h3 class="text-2xl font-semibold mb-4">Available Lines</h3>
+            <div class="overflow-y-auto max-h-72 space-y-4">
+              <!-- Card 1 -->
+              <div class="p-4 bg-gray-100 border border-gray-300 rounded-md shadow-sm flex justify-between items-center">
+                <div>
+                  <h4 class="text-lg font-bold">Billing Counter</h4>
+                  <p class="text-sm text-gray-600">Number of People: 15</p>
+                  <p class="text-sm text-gray-600">Capacity: 20</p>
+                  <p class="text-sm text-gray-600">Closing Time: 5:00 PM</p>
+                </div>
+                <button class="bg-primary text-secondary px-4 py-2 rounded-md hover:bg-opacity-90 transition duration-300">Register</button>
+              </div>
+              <!-- Card 2 -->
+              <div class="p-4 bg-gray-100 border border-gray-300 rounded-md shadow-sm flex justify-between items-center">
+                <div>
+                  <h4 class="text-lg font-bold">Enquiry Desk</h4>
+                  <p class="text-sm text-gray-600">Number of People: 10</p>
+                  <p class="text-sm text-gray-600">Capacity: 15</p>
+                  <p class="text-sm text-gray-600">Closing Time: 4:30 PM</p>
+                </div>
+                <button class="bg-primary text-secondary px-4 py-2 rounded-md hover:bg-opacity-90 transition duration-300">Register</button>
+              </div>
+              <!-- Card 3 -->
+              <div class="p-4 bg-gray-100 border border-gray-300 rounded-md shadow-sm flex justify-between items-center">
+                <div>
+                  <h4 class="text-lg font-bold">Registration Counter</h4>
+                  <p class="text-sm text-gray-600">Number of People: 5</p>
+                  <p class="text-sm text-gray-600">Capacity: 10</p>
+                  <p class="text-sm text-gray-600">Closing Time: 3:00 PM</p>
+                </div>
+                <button class="bg-primary text-secondary px-4 py-2 rounded-md hover:bg-opacity-90 transition duration-300">Register</button>
+              </div>
+              <!-- Add more dummy cards as needed -->
+            </div>
+          </div>
+        </div>
+      </section>
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 border-blue-900 border-2 p-6 rounded-lg shadow-lg hover:bg-blue-900 hover:text-white">
+                    <h3 class="text-xl font-semibold mb-4">1. Search</h3>
+                    <p>Find businesses by location and organization name.</p>
+                </div>
+                <div class="bg-gray-100  border-blue-900 border-2 p-6 rounded-lg shadow-lg hover:bg-blue-900 hover:text-white">
+                    <h3 class="text-xl font-semibold mb-4">2. Register</h3>
+                    <p>Log in and join the line for your chosen service.</p>
+                </div>
+                <div class="bg-gray-100  border-blue-900 border-2 p-6 rounded-lg shadow-lg hover:bg-blue-900 hover:text-white">
+                    <h3 class="text-xl font-semibold mb-4">3. Track</h3>
+                    <p>Monitor your position in line in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add this section to your HTML -->
+<section class="mb-16">
+    <h2 class="text-3xl font-bold text-center mb-8">Popular Services</h2>
+    <div class="owl-carousel owl-theme">
+      <div class="item">
+        <div class="bg-blue-900 text-white border-2 border-white p-6 rounded-lg shadow-lg hover:bg-white hover:text-blue-900 hover:border-blue-900 transition duration-300">
+          <h3 class="text-xl font-semibold mb-4">Healthcare</h3>
+          <p>Manage patient queues efficiently with organised system.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="bg-blue-900 text-white border-2 border-white p-6 rounded-lg shadow-lg hover:bg-white hover:text-blue-900 hover:border-blue-900 transition duration-300">
+          <h3 class="text-xl font-semibold mb-4">Government Services</h3>
+          <p>Streamline citizen services and reduce wait times.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="bg-blue-900 text-white border-2 border-white p-6 rounded-lg shadow-lg hover:bg-white hover:text-blue-900 hover:border-blue-900 transition duration-300">
+          <h3 class="text-xl font-semibold mb-4">Retail</h3>
+          <p>Enhance customer experience with virtual queues.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="bg-blue-900 text-white border-2 border-white p-6 rounded-lg shadow-lg hover:bg-white hover:text-blue-900 hover:border-blue-900 transition duration-300">
+          <h3 class="text-xl font-semibold mb-4">Education</h3>
+          <p>Organize student services and counseling sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  
+    </main>
+
+    <footer class="bg-primary text-secondary py-12">
+        <div class="container mx-auto px-4">
+            <!-- Grid Layout for Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About FollowUp -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">About FollowUp</h3>
+                    <p class="text-sm leading-relaxed">
+                        FollowUp is an innovative queue management platform that aims to simplify waiting times for businesses and enhance the experience for their customers. Say goodbye to long lines and hello to efficient management!
+                    </p>
+                </div>
+                <!-- Sitemap Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Sitemap</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:underline hover:text-gray-300 transition duration-300">Home</a></li>
+                        <li><a href="#" class="hover:underline hover:text-gray-300 transition duration-300">About</a></li>
+                        <li><a href="#" class="hover:underline hover:text-gray-300 transition duration-300">Services</a></li>
+                        <li><a href="#" class="hover:underline hover:text-gray-300 transition duration-300">Contact</a></li>
+                        <li><a href="login.html" class="hover:underline hover:text-gray-300 transition duration-300">Login</a></li>
+                        <li><a href="signup.html" class="hover:underline hover:text-gray-300 transition duration-300">Sign Up</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li><span class="font-medium">Email:</span> <a href="mailto:info@FollowUp.com" class="hover:underline hover:text-gray-300">info@FollowUp.com</a></li>
+                        <li><span class="font-medium">Phone:</span> <a href="tel:1234567890" class="hover:underline hover:text-gray-300">(123) 456-7890</a></li>
+                        <li><span class="font-medium">Address:</span> 123 Queue Street, Smart City, World</li>
+                    </ul>
+                </div>
+                <!-- Follow Us Section -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-secondary hover:text-gray-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.437 9.879v-6.99h-2.54v-2.889h2.54v-2.205c0-2.507 1.493-3.89 3.778-3.89 1.094 0 2.238.194 2.238.194v2.463h-1.261c-1.243 0-1.63.771-1.63 1.56v1.878h2.773l-.443 2.889h-2.33v6.99C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-secondary hover:text-gray-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557a9.835 9.835 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.86 9.86 0 0 1-3.127 1.195 4.924 4.924 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149a4.92 4.92 0 0 0-.666 2.475c0 1.708.87 3.216 2.188 4.096a4.921 4.921 0 0 1-2.228-.616v.062a4.922 4.922 0 0 0 3.946 4.827 4.902 4.902 0 0 1-2.224.084 4.925 4.925 0 0 0 4.6 3.417 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.788-.023-1.174-.068a13.945 13.945 0 0 0 7.548 2.212c9.057 0 14.009-7.512 14.009-14.009 0-.213-.005-.426-.015-.637A9.982 9.982 0 0 0 24 4.557z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-secondary hover:text-gray-300 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c-5.473 0-9.84 4.367-9.84 9.84 0 4.296 2.681 7.945 6.545 9.249.478.087.652-.208.652-.465 0-.229-.01-.833-.014-1.634-2.654.579-3.213-1.279-3.213-1.279-.436-1.104-1.064-1.398-1.064-1.398-.869-.595.067-.583.067-.583.96.068 1.464.986 1.464.986.854 1.463 2.24 1.04 2.786.795.087-.62.335-1.041.609-1.281-2.119-.241-4.347-1.059-4.347-4.715 0-1.041.372-1.892.98-2.557-.098-.241-.424-1.213.093-2.531 0 0 .799-.257 2.618.981a9.115 9.115 0 0 1 2.384-.321c.809.004 1.623.11 2.384.321 1.818-1.238 2.617-.981 2.617-.981.518 1.318.192 2.29.094 2.531.61.665.98 1.516.98 2.557 0 3.665-2.233 4.472-4.364 4.708.345.298.652.888.652 1.792 0 1.293-.011 2.337-.011 2.653 0 .258.173.553.66.46 3.86-1.305 6.537-4.953 6.537-9.249 0-5.473-4.366-9.84-9.84-9.84z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+                <p>© 2024 FollowUp | All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Include Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+   
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Initialize Owl Carousel -->
+<script>
+    $(document).ready(function () {
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        responsive: {
+          0: { items: 1 },
+          768: { items: 2 },
+          1024: { items: 3 }
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+      const mobileMenu = document.getElementById('mobileMenu');
+    
+      mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+      });
+    
+      
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Line - LineUp</title>
+    <script src="https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#FFFFFF',
+                        highlight: '#FBBF24',
+                        danger: '#DC2626',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-secondary text-primary">
+    <!-- Navbar -->
+    <nav class="bg-primary text-secondary">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold">LineUp</a>
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="index.html" class="hover:text-gray-300 transition duration-300">Home</a>
+                <a href="#" class="hover:text-gray-300 transition duration-300">Dashboard</a>
+                <a href="#" class="hover:text-gray-300 transition duration-300">Profile</a>
+                <a href="#" class="bg-secondary text-primary px-4 py-2 rounded hover:bg-opacity-90 transition duration-300">Logout</a>
+            </div>
+            <button class="md:hidden text-2xl" id="mobileMenuButton">☰</button>
+        </div>
+        <div class="md:hidden pb-8 hidden" id="mobileMenu">
+            <a href="index.html" class="block py-2 px-4 hover:bg-blue-900">Home</a>
+            <a href="#" class="block py-2 px-4 hover:bg-blue-900">Dashboard</a>
+            <a href="#" class="block py-2 px-4 hover:bg-blue-900">Profile</a>
+            <a href="#" class="block py-2 px-2 bg-secondary border-2 border-blue-900 text-primary rounded hover:bg-opacity-90">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Line Details Section -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8 border border-gray-300 hover:shadow-lg hover:border-highlight transition duration-300">
+            <h1 class="text-2xl font-bold mb-4">Line Details</h1>
+            <ul class="text-sm space-y-2">
+                <li><strong>Location:</strong> <span id="lineLocation">City Center</span></li>
+                <li><strong>Organization:</strong> <span id="lineOrganization">ABC Services</span></li>
+                <li><strong>Service:</strong> <span id="lineService">General Queue</span></li>
+                <li><strong>Estimated Waiting Time:</strong> <span id="lineWaitTime">15 Minutes</span></li>
+                <li><strong>Your Position:</strong> <span id="linePosition" class="text-highlight font-semibold">#23</span></li>
+            </ul>
+        </div>
+
+        <!-- Highlighted Required Documents Section -->
+        <div class="bg-highlight bg-opacity-10 border-l-4 border-highlight rounded-lg p-4 mb-8">
+            <h2 class="text-lg font-bold text-highlight">Required Information</h2>
+            <p class="text-sm text-gray-700">Please ensure you have the following details ready: Full Name, Date of Birth, Mobile Number, Email ID, and AADHAAR (optional).</p>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-6">Join the Line</h2>
+            <form>
+                <!-- Full Name -->
+                <div class="mb-4">
+                    <label for="fullName" class="block text-sm font-medium mb-1">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Enter your full name" 
+                        required 
+                        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="mb-4">
+                    <label for="dob" class="block text-sm font-medium mb-1">Date of Birth</label>
+                    <input 
+                        type="date" 
+                        id="dob" 
+                        name="dob" 
+                        required 
+                        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="mb-4">
+                    <label for="mobile" class="block text-sm font-medium mb-1">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile" 
+                        name="mobile" 
+                        placeholder="Enter your mobile number" 
+                        required 
+                        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                </div>
+
+                <!-- Email ID -->
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium mb-1">Email ID</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email ID" 
+                        required 
+                        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                </div>
+
+                <!-- AADHAAR (Optional) -->
+                <div class="mb-4">
+                    <label for="aadhaar" class="block text-sm font-medium mb-1">AADHAAR (Optional)</label>
+                    <input 
+                        type="text" 
+                        id="aadhaar" 
+                        name="aadhaar" 
+                        placeholder="Enter your AADHAAR number" 
+                        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                </div>
+
+                <!-- Pre-filled Position -->
+                <div class="mb-6">
+                    <label for="position" class="block text-sm font-medium mb-1">Your Position</label>
+                    <input 
+                        type="text" 
+                        id="position" 
+                        name="position" 
+                        value="23" 
+                        readonly 
+                        class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 text-gray-600 cursor-not-allowed"
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    class="w-full bg-primary text-secondary py-3 rounded-md font-semibold hover:bg-opacity-90 transition duration-300"
+                >
+                    Join Line
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-secondary py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 LineUp | All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
